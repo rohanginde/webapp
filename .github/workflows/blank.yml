@@ -39,6 +39,7 @@ jobs:
       - name: Install dependencies and run tests
         run: |
           npm install
+          node app.js
           if ! npm test; then
             echo "Tests failed, blocking pull request from merging."
             exit 1
