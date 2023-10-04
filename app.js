@@ -2,7 +2,8 @@ import express from "express";
 import { createConnection } from "mysql2";
 const app = express();
 const port = 8080;
-//this is the code asdasda
+
+
 
 app.get("/healthz", (req, res) => {
   let health = false;
