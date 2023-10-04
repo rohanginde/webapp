@@ -1,0 +1,58 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: configuremysql
+
+      run: |
+
+        sudo apt-get update
+
+        sudo apt-get install -y curl
+
+        sudo systemctl start mysql
+
+        sudo systemctl status mysql
+
+        mysql -u root -p"root" -e "CREATE DATABASE asd;"
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+
+    - name: Install Dependencies
+      run: npm install
+  
+      
+    - name: Run app
+      run: npm test
+
+
+    - name: Set up Application Configuration
+      env:
+        MYSQL_HOST: localhost
+        MYSQL_PORT: 3306
+        MYSQL_USER: root
+        MYSQL_PASSWORD: root@123456
+        MYSQL_DATABASE: sys
+        
+      run: |
+        echo "MYSQL_HOST=localhost" >> .env
+        echo "MYSQL_PORT=3306" >> .env
+        echo "MYSQL_USER=root" >> .env
+        echo "MYSQL_PASSWORD=root@123456" >> .env
+        echo "MYSQL_DATABASE=sys" >> .env
+        
+
+    - name: Run Integration Tests
+      run: npm test:integration
