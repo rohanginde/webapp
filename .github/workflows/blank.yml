@@ -24,7 +24,7 @@ jobs:
 
         sudo systemctl status mysql
 
-        mysql -u root -p"root" -e "CREATE DATABASE sys;"
+        mysql -u root -p"root" -e "CREATE DATABASE asd;"
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
