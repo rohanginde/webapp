@@ -4,7 +4,6 @@ const app = express();
 const port = 8080;
 
 
-
 app.get("/healthz", (req, res) => {
   let health = false;
   var connection = createConnection({
