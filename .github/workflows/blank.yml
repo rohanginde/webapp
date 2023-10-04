@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+      - Assignment2
 
 jobs:
   mysql-health-check:
@@ -14,7 +15,7 @@ jobs:
         ports:
           - 3306:3306
         env:
-          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_ROOT_PASSWORD: root@123456
           MYSQL_DATABASE: testdb
 
     steps:
