@@ -1,6 +1,6 @@
 import express from "express";
 import { createConnection } from "mysql2";
-const app = express();
+export const app = express();
 const port = 8080;
 
 app.get("/healthz", (req, res) => {
