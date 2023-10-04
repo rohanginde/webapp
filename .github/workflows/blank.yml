@@ -12,7 +12,19 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: configuremysql
 
+      run: |
+
+        sudo apt-get update
+
+        sudo apt-get install -y curl
+
+        sudo systemctl start mysql
+
+        sudo systemctl status mysql
+
+        mysql -u root -p"root" -e "CREATE DATABASE sys;"
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
