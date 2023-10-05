@@ -1,7 +1,7 @@
 import { where } from "sequelize";
-import { Assignment } from "../models/Assignment.js";
+import { Assignment } from "../models/assignment.js";
 
-import { User } from "../models/User.js";
+import { User } from "../models/user.js";
 
 export const getAllAssignments = async (req, res) => {
 
