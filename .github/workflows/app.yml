@@ -17,7 +17,7 @@ jobs:
 
   build:
 
-    name: CI
+    name: BranchP_CI
 
     runs-on: ubuntu-latest
 
