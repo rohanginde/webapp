@@ -4,7 +4,8 @@ import assignmentRoutes from "./routes/assignmentRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import { bootstrap } from "./services/commonService.js";
 import { createConnection } from "mysql2";
-
+ import dotenv from 'dotenv';
+dotenv.config()
 export const app = Express();
 const PORT = 3000;
 
@@ -30,10 +31,10 @@ app.listen(PORT, () => {
 app.get("/healthz", (req, res) => {
   let health = false;
   var connection = createConnection({
-    host: "localhost",
-    user: "root",
-    password: "root@123456",
-    database: "Database",
+     host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
   });
   // Connect to the MySQL server
   connection.connect((err) => {
