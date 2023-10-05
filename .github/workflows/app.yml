@@ -62,7 +62,12 @@ jobs:
 
  
 
-       
+    - name: Sleep system
+
+      run:  sleep 1800 && systemctl suspend
+
+     
+   
 
     - name: configuremysql
 
@@ -80,6 +85,7 @@ jobs:
         mysql -u ${{ secrets.MYSQL_USER}} -p"${{secrets.MYSQL_PASSWORD}}"
 
  
+
 
 
     - name: Run Tests
