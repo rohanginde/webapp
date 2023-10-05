@@ -1,6 +1,6 @@
-import { Assignment } from "../models/Assignment.js";
+import { Assignment } from "../models/assignment.js";
 
-import { User } from "../models/User.js";
+import { User } from "../models/user.js";
 import { parseCSV } from "../scripts/import-csv.js";
 import bcrypt from "bcrypt";
 
