@@ -51,12 +51,12 @@ jobs:
 
       run: |
 
-            echo "MYSQL_DATABASE=sys" >> .env
-            echo "MYSQL_USER=root" >> .env
-            echo "MYSQL_PASSWORD=root" >> .env
-            echo "MYSQL_PORT=3306" >> .env
-            echo "MYSQL_HOST=127.0.0.1" >> .env
-            echo "DB_DIALECT=mysql" >> .env
+            echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE}}" >> .env
+            echo "MYSQL_USER=${{ secrets.MYSQL_USER}}" >> .env
+            echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD}}" >> .env
+            echo "MYSQL_PORT=${{ secrets.MYSQL_PORT}}" >> .env
+            echo "MYSQL_HOST=${{ secrets.MYSQL_HOST}}" >> .env
+            echo "DB_DIALECT=${{ secrets.DB_DIALECT}}" >> .env
 
             cat .env
 
@@ -77,13 +77,10 @@ jobs:
         sudo systemctl status mysql
 
 
-        mysql -u root -p"root"
+        mysql -u ${{ secrets.MYSQL_USER}} -p"${{secrets.MYSQL_PASSWORD}}"
 
  
 
-    - name: Run program
-
-      run : node app.js
 
     - name: Run Tests
 
