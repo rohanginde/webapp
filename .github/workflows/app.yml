@@ -62,9 +62,6 @@ jobs:
 
  
 
-    - name: Sleep system
-
-      run:  sleep 1800 && systemctl suspend
 
      
    
