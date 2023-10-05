@@ -1,7 +1,31 @@
-import express from "express";
+
+import Express from "express";
+import assignmentRoutes from "./routes/assignmentRoutes.js";
+import userRouter from "./routes/userRoutes.js";
+import { bootstrap } from "./services/commonService.js";
 import { createConnection } from "mysql2";
-const app = express();
-const port = 8080;
+
+export const app = Express();
+const PORT = 3000;
+
+//-----------------------------------------------------------
+app.use(Express.json());
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization,x-access-token"
+  );
+  next();
+});
+
+app.use(userRouter);
+app.use(assignmentRoutes);
+
+app.listen(PORT, () => {
+  console.log("Server is running on", PORT);
+});
 
 app.get("/healthz", (req, res) => {
   let health = false;
@@ -9,7 +33,7 @@ app.get("/healthz", (req, res) => {
     host: "localhost",
     user: "root",
     password: "root@123456",
-    database: "sys",
+    database: "Database",
   });
   // Connect to the MySQL server
   connection.connect((err) => {
@@ -21,10 +45,13 @@ app.get("/healthz", (req, res) => {
     res.setHeader("Cache-Control", "no-cache");
     res.setHeader("Pragma", "no-cache");
     res.setHeader("X-Content-Type-Options", "nosniff");
-    if (Object.keys(req.params).length > 0 || Object.keys(req.query).length > 0) {
+    if (
+      Object.keys(req.params).length > 0 ||
+      Object.keys(req.query).length > 0
+    ) {
       // If parameters are detected, respond with a 400 Bad Request status code
       res.status(400).send();
-    } 
+    }
     if (req.get("Content-Length") > 0) {
       res.status(400).send();
     }
@@ -43,6 +70,6 @@ app.all("/healthz", (req, res) => {
   res.status(405).send();
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+bootstrap();
+
+export default app;
