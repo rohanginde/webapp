@@ -81,7 +81,9 @@ jobs:
 
  
 
- 
+    - name: Run program
+
+      run : node app.js
 
     - name: Run Tests
 
