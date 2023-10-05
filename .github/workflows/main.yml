@@ -1,0 +1,43 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - main
+      - Assignment2
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: configuremysql
+
+      run: |
+
+        sudo apt-get update
+
+        sudo apt-get install -y curl
+
+        sudo systemctl start mysql
+
+        sudo systemctl status mysql
+
+  
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+
+    - name: Install Dependencies
+      run: npm install
+  
+      
+    - name: Run app
+      run: npm test
+        
+
+    - name: Run Integration Tests
+      run: npm test:integration
