@@ -16,7 +16,7 @@ describe('API Tests', () => {
       .get('/healthz') // Replace with the actual endpoint you want to test
       .end((err, res) => {
         expect(err).to.be.null;
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(204);
         done();
         process.exit(0)
       });
