@@ -2,13 +2,12 @@
 
  
 
-# Update package lists
 
 sudo apt-get update
 
  
 
-# Install Node.js and npm
+
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm
 
@@ -26,7 +25,10 @@ sudo DEBIAN_FRONTEND=noninteractive node -v
 
  
 
-# Check npm version
+
+
+sudo mysql --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY 'root'; FLUSH PRIVILEGES;"
+
 
 npm -v
 
@@ -36,13 +38,10 @@ npm -v
 
 sudo DEBIAN_FRONTEND=noninteractive apt install -y unzip
 
- 
 
 # Unzip the WebAppRenamed file to the WebApp directory
 
 sudo unzip WebAppRenamed -d WebApp
  
 
-# Display a message
 
-echo "foo"
