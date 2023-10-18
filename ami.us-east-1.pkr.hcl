@@ -20,7 +20,7 @@ variable "source_ami" {
 }
 
 variable "aws_profile" {
-  type = string
+  type    = string
   default = "dev"
 }
 
@@ -36,7 +36,7 @@ variable "subnet_id" {
 
 variable "ami_users" {
   type    = list(string)
-  default = ["303561834123","067566139146"]
+  default = ["303561834123", "067566139146"]
 }
 
 source "amazon-ebs" "debian" {
@@ -58,7 +58,7 @@ source "amazon-ebs" "debian" {
   ssh_username  = "${var.ssh_username}"
   subnet_id     = "${var.subnet_id}"
   ami_users     = "${var.ami_users}"
-  profile   = "${var.aws_profile}"
+  profile       = "${var.aws_profile}"
 
   launch_block_device_mappings {
     delete_on_termination = true
