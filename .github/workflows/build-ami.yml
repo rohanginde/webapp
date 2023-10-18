@@ -18,13 +18,6 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 18
-    
-    - name: install the dependencies
-      run: npm install
-
-    - name: run the integration
-      run: |
-        npm test
 
     - name: Display .env file
       run: |
@@ -43,6 +36,17 @@ jobs:
         sudo systemctl start mysql
         sudo systemctl status mysql
         mysql -u ${{ secrets.MYSQL_USER }} -p"${{ secrets.MYSQL_PASSWORD }}"
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: v18.17.1
+
+    - name: install the dependencies
+      run: npm install
+
+    - name: run the integration
+      run: |
+        npm test
 
     - name: Zip webapp contents
       run: |
@@ -52,11 +56,6 @@ jobs:
       run: |
         ls -a
         current_directory=$(pwd)
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: v18.17.1
 
 
     - name: Set up Packer
