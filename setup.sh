@@ -12,6 +12,8 @@ sudo apt-get update
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm
 
+
+
  
 
 # Install MariaDB server and client
@@ -48,26 +50,8 @@ sudo unzip WebAppRenamed -d WebApp
 
 sudo mysql
 
- 
 
  
 
- 
-
-sudo mysql --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY 'root'; FLUSH PRIVILEGES;"
-
- 
-
- 
-
- 
-
-# Exit MySQL shell
 
 sudo mysql --execute="EXIT;"
-
- 
-
-# Display a message
-
-echo "foo"
