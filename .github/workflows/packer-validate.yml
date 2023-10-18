@@ -12,15 +12,6 @@ jobs:
 
     steps:
 
-      - name: Current Dic
-        run: pwd
-
-      - name: Directories inside
-        run: cd .
-
-      - name: Directories inside
-        run: ls -a
-
       - name: Checkout code
         uses: actions/checkout@v2
 
