@@ -12,8 +12,6 @@ sudo apt-get update
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm
 
-
-
  
 
 # Install MariaDB server and client
@@ -43,15 +41,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt install -y unzip
 # Unzip the WebAppRenamed file to the WebApp directory
 
 sudo unzip WebAppRenamed -d WebApp
-
  
 
-# Start MySQL shell
+# Display a message
 
-sudo mysql
-
-
- 
-
-
-sudo mysql --execute="EXIT;"
+echo "foo"
