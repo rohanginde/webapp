@@ -77,7 +77,7 @@ build {
   }
 
   provisioner "shell" {
-    scripts = ["./setup2.sh"]
+    scripts = ["./setup.sh"]
 
   }
 }
