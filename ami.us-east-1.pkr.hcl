@@ -38,7 +38,7 @@ variable "ami_users" {
   type    = list(string)
   default = ["303561834123", "067566139146"]
 }
-
+}
 source "amazon-ebs" "debian" {
   ami_name        = "csye6225_${formatdate("YYYY_MM_DD_hh_mm_ss", timestamp())}"
   region          = "${var.aws_region}"
