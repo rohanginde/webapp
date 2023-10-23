@@ -18,7 +18,7 @@ variable "source_ami" {
   type    = string
   default = "ami-06db4d78cb1d3bbf9"
 }
-     variable "aws_profile" {
+variable "aws_profile" {
   type    = string
   default = "dev"
 }
@@ -77,7 +77,7 @@ build {
   }
 
   provisioner "shell" {
-    scripts = ["./setup.sh"]
+    scripts = ["./setup2.sh"]
 
   }
 }
