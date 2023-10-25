@@ -77,6 +77,13 @@ build {
     destination = "~/WebAppRenamed"
   }
 
+    provisioner "file" {
+
+    source      = "nodeapp.service"
+    destination = "~/"
+  }
+
+
   provisioner "shell" {
     scripts = ["./setup.sh"]
 
