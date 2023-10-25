@@ -1,4 +1,7 @@
 #!/bin/bash
+
+cd WebApp || exit
+
 sudo cp nodeapp.service /lib/systemd/system/app.service
 
 systemctl daemon-reload
