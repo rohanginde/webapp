@@ -77,7 +77,7 @@ build {
     destination = "~/WebAppRenamed"
   }
 
-    provisioner "file" {
+  provisioner "file" {
 
     source      = "nodeapp.service"
     destination = "~/"
