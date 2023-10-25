@@ -5,7 +5,11 @@ import { User } from "../models/user.js";
 
 export const getAllAssignments = async (req, res) => {
 
-  const assignments = await Assignment.findAll();
+  const assignments = await Assignment.findAll({
+    attributes: {
+      exclude: ['createdBy'],
+    },
+  });
 
   return assignments;
 };
@@ -15,6 +19,7 @@ export const createAssignment = async (assignmentData) => {
  
   console.log(assignmentData.createdBy);
   const assignment = await Assignment.create(assignmentData); //inbuilt method
+   delete assignment.createdBy;
   return assignment;
 };
 
@@ -22,6 +27,7 @@ export const createAssignment = async (assignmentData) => {
 export const getAssignmentById = async (id) => {
   try {
     return await findAssignment(id);
+  
   } catch (error) {
     throw new Error(error.message);
   }
@@ -31,9 +37,11 @@ export const getAssignmentById = async (id) => {
 export const deleteAssignmentById = async (id, email) => {
   try {
     const assignment = await findAssignment(id);
-   
+    
+
+    console.log(email , assignment.createdBy)
     if(assignment == undefined){
-      return 0;
+      return -1;
     }
     if (email == assignment.createdBy) {
       await assignment.destroy();
@@ -69,7 +77,9 @@ export const updateAssignmentById = async (id, assignmentData, email) => {
 
 //-----------------------------------------------------------
 export const findAssignment = async (id) => {
-  const assignment = await Assignment.findOne({ where: { id } });
+  const assignment = await Assignment.findOne({ where: { id } ,
+    // Add any other query options as needed
+  });
   if (!assignment) {
     throw new Error("Assignment not found");
   }

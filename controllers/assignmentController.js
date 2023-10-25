@@ -1,7 +1,6 @@
 import { getCredentials } from "../middleware/requireLogin.js";
 import * as assignmentService from "../services/assignmentService.js";
 
-
 export const getAllAssignments = async (req, res) => {
   try {
     const assignments = await assignmentService.getAllAssignments();
@@ -37,9 +36,9 @@ export const getAssignmentById = async (req, res) => {
     const { id } = req.params;
     console.log(req.params);
     const email = getCredentials(req)[0];
-    console.log(email,id)
+    console.log(email, id);
     const assignment = await assignmentService.getAssignmentById(id, email);
-    console.log(assignment)
+    console.log(assignment);
     if (!assignment) {
       res.status(403).json();
       return;
@@ -57,26 +56,22 @@ export const deleteAssignment = async (req, res) => {
 
   const email = getCredentials(req)[0];
   try {
-
     const val = await assignmentService.deleteAssignmentById(id, email);
-    console.log("VALUE",val)
-    if (val==true) {
+    console.log("VALUE", val);
+    if (val == true) {
       res.status(204).send();
-    } 
-    
-    if(val==0){
+    }
+
+    if (val == -1) {
       res.status(404).send();
     }
-    if(val==false){
+    if (val == false) {
       res.status(403).send();
     }
-    
-   
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
-
 
 export const updateAssignment = async (req, res) => {
   const { id } = req.params;

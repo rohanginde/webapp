@@ -81,4 +81,9 @@ build {
     scripts = ["./setup.sh"]
 
   }
+
+  provisioner "shell" {
+    scripts = ["./automatic-start.sh"]
+
+  }
 }
