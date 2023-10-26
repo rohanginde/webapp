@@ -14,26 +14,6 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm
 
  
 
-# Install MariaDB server and client
-
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server mariadb-client
-
- 
-
-# Check Node.js version
-
-sudo DEBIAN_FRONTEND=noninteractive node -v
-
- 
-
-
-sudo mysql --execute="ALTER USER 'root'@'localhost' IDENTIFIED BY 'root'; FLUSH PRIVILEGES;"
-# Check npm version
-
-npm -v
-
- 
-
 # Install unzip
 
 sudo DEBIAN_FRONTEND=noninteractive apt install -y unzip
@@ -45,5 +25,10 @@ sudo DEBIAN_FRONTEND=noninteractive apt install -y unzip
 sudo unzip WebAppRenamed -d WebApp
  
 
-# Display a message
+
+
+sudo groupadd csye6225
+
+sudo useradd -s /bin/false -g csye6225 -d /opt/csye6225 -m csye6225
+
 

@@ -2,6 +2,13 @@ import sequelize from '../config/database.js';
 import { DataTypes } from 'sequelize';
 
 export const Assignment = sequelize.define('Assignment', {
+  id: {
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4, // Generate a UUID v4 by default
+    primaryKey: true,
+    allowNull: false,
+  },
+
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -44,5 +51,6 @@ export const Assignment = sequelize.define('Assignment', {
   createdBy: {
     type: DataTypes.STRING,
     allowNull: false,
-        }
-});
+        },
+        
+},{timestamps: false,  dialect: 'mysql',});
