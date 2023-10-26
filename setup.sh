@@ -25,12 +25,10 @@ sudo DEBIAN_FRONTEND=noninteractive apt install -y unzip
 sudo unzip WebAppRenamed -d WebApp
  
 
-# Display a message
+
 
 sudo groupadd csye6225
 
 sudo useradd -s /bin/false -g csye6225 -d /opt/csye6225 -m csye6225
 
-
-#give permissions to user
 

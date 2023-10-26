@@ -93,4 +93,5 @@ build {
     scripts = ["./automatic-start.sh"]
 
   }
+
 }
