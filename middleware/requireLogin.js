@@ -28,6 +28,9 @@ export const getCredentials = (req) => {
 
   const token = req.header("Authorization");
   let arr = '';
+
+ 
+
   if (token == undefined) {
     return arr;
   } else {

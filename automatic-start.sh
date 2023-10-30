@@ -10,5 +10,3 @@ sudo systemctl start nodeapp
 
 sudo systemctl restart nodeapp
 
-
-
