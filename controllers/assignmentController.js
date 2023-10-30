@@ -62,7 +62,9 @@ export const deleteAssignment = async (req, res) => {
       res.status(204).send();
     }
 
+
     if (val == -1 || val ==-2) {
+
       res.status(404).send();
     }
     if (val == false) {
