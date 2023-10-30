@@ -50,7 +50,8 @@ export const deleteAssignmentById = async (id, email) => {
       return false;
     }
   } catch (error) {
-   return 0;
+    
+   return -2;
   }
 };
 
