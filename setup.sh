@@ -23,8 +23,9 @@ cd /opt
 
 # Unzip the WebAppRenamed file to the WebApp directory
 
-sudo unzip webapp.zip -d csye6225
- 
+
+sudo unzip /tmp/webapp.zip -d csye6225
+
 
 sudo groupadd csye6225
 
