@@ -74,7 +74,7 @@ build {
   provisioner "file" {
 
     source      = "webapp.zip"
-    destination = "~/WebAppRenamed"
+    destination = "/tmp/webapp.zip"
   }
 
   provisioner "file" {
@@ -91,6 +91,10 @@ build {
 
   provisioner "shell" {
     scripts = ["./automatic-start.sh"]
+
+  }
+  provisioner "shell" {
+    scripts = ["./install-cloudwatch.sh"]
 
   }
 
