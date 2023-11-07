@@ -19,13 +19,12 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y nodejs npm
 sudo DEBIAN_FRONTEND=noninteractive apt install -y unzip
 
 
+cd /opt
 
 # Unzip the WebAppRenamed file to the WebApp directory
 
-sudo unzip WebAppRenamed -d WebApp
+sudo unzip webapp.zip -d csye6225
  
-
-
 
 sudo groupadd csye6225
 
