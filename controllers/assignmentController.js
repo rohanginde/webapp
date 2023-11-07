@@ -62,7 +62,9 @@ export const deleteAssignment = async (req, res) => {
       res.status(204).send();
     }
 
-    if (val == -1) {
+
+    if (val == -1 || val ==-2) {
+
       res.status(404).send();
     }
     if (val == false) {
@@ -77,7 +79,11 @@ export const updateAssignment = async (req, res) => {
   const { id } = req.params;
   const assignmentData = req.body;
   const email = getCredentials(req)[0];
-
+  console.log(id)
+  console.log("hello")
+  if (!id||id==""){
+    res.status(400).json();
+  }
   try {
     if (
       await assignmentService.updateAssignmentById(id, assignmentData, email)
@@ -87,6 +93,6 @@ export const updateAssignment = async (req, res) => {
       res.status(403).send();
     }
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(404).json();
   }
 };
