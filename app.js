@@ -9,6 +9,7 @@ import { createConnection } from "mysql2";
 
  import dotenv from 'dotenv';
 import logger from "./logger.cjs";
+import trackAPICalls from "./middleware/apiMetrics.js";
 dotenv.config()
 export const app = Express();
 const PORT = 3000;
@@ -27,7 +28,7 @@ app.use((req, res, next) => {
 
 app.use(userRouter);
 app.use(assignmentRoutes);
-
+app.use(trackAPICalls);
 app.listen(PORT, () => {
   console.log("Server is running on", PORT);
 });
