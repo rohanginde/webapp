@@ -57,7 +57,7 @@ jobs:
             echo "MYSQL_PORT=${{ secrets.MYSQL_PORT}}" >> .env
             echo "MYSQL_HOST=${{ secrets.MYSQL_HOST}}" >> .env
             echo "DB_DIALECT=${{ secrets.DB_DIALECT}}" >> .env
-
+            echo "MAILGUN_API_KEY=${{ secrets.MAILGUN_API_KEY}}" >> .env
             cat .env
 
  

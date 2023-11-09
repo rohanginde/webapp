@@ -10,7 +10,7 @@ import { createConnection } from "mysql2";
  import dotenv from 'dotenv';
 import logger from "./logger.cjs";
 import trackAPICalls from "./middleware/apiMetrics.js";
-import { sendEmail } from "./scripts/mail-setting.js";
+
 import { checkhealth } from "./middleware/healthcheck.js";
 
 dotenv.config()
