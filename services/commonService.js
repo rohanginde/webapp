@@ -5,9 +5,9 @@ import { parseCSV } from "../scripts/import-csv.js";
 import bcrypt from "bcrypt";
 
 export const bootstrap = async () => {
-    await User.sync();
+   await User.sync();
    
-    await Assignment.sync()
+   await Assignment.sync()
     try {
       parseCSV((data) => {
         data.forEach(async (row) => {
