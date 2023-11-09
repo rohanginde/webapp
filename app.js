@@ -4,7 +4,12 @@ import assignmentRoutes from "./routes/assignmentRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import { bootstrap } from "./services/commonService.js";
 import { createConnection } from "mysql2";
+
+
+
  import dotenv from 'dotenv';
+import logger from "./logger.cjs";
+import trackAPICalls from "./middleware/apiMetrics.js";
 dotenv.config()
 export const app = Express();
 const PORT = 3000;
@@ -23,13 +28,15 @@ app.use((req, res, next) => {
 
 app.use(userRouter);
 app.use(assignmentRoutes);
-
+app.use(trackAPICalls);
 app.listen(PORT, () => {
   console.log("Server is running on", PORT);
 });
 
 app.get("/healthz", (req, res) => {
   let health = false;
+
+  
   var connection = createConnection({
      host: process.env.MYSQL_HOST,
     user: process.env.MYSQL_USER,
@@ -57,6 +64,7 @@ app.get("/healthz", (req, res) => {
       res.status(400).send();
     }
     if (health) {
+      logger.info("Connection success")
       res.send();
     } else {
       res.status(503).send();

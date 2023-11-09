@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-sudo cp /home/admin/nodeapp.service /lib/systemd/system/nodeapp.service
+sudo cp /opt/csye6225/nodeapp.service /lib/systemd/system/nodeapp.service
 
 
 sudo systemctl daemon-reload
