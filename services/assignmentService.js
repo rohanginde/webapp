@@ -1,4 +1,5 @@
 import { where } from "sequelize";
+import logger from "../logger.cjs";
 import { Assignment } from "../models/assignment.js";
 
 import { User } from "../models/user.js";
@@ -10,13 +11,13 @@ export const getAllAssignments = async (req, res) => {
       exclude: ['createdBy'],
     },
   });
-
+  logger.info("Get All Assignments")
   return assignments;
 };
 
 export const createAssignment = async (assignmentData) => {
  
- 
+  logger.info("Assignment Created")
   console.log(assignmentData.createdBy);
   const assignment = await Assignment.create(assignmentData); //inbuilt method
    delete assignment.createdBy;
@@ -38,7 +39,7 @@ export const deleteAssignmentById = async (id, email) => {
   try {
     const assignment = await findAssignment(id);
     
-
+    logger.info("Assignment Deleted")
     console.log(email , assignment.createdBy)
     if(assignment == undefined){
       return -1;
@@ -67,6 +68,7 @@ export const updateAssignmentById = async (id, assignmentData, email) => {
 
     if (email == assignment.createdBy) {
       await assignment.save();
+      logger.info("Assignment Updated")
       return true;
     } else {
       return false;
@@ -82,6 +84,7 @@ export const findAssignment = async (id) => {
     // Add any other query options as needed
   });
   if (!assignment) {
+    logger.error("Assignment not found")
     throw new Error("Assignment not found");
   }
   return assignment;
