@@ -3,8 +3,32 @@ import { Assignment } from "../models/assignment.js";
 import { User } from "../models/user.js";
 import { parseCSV } from "../scripts/import-csv.js";
 import bcrypt from "bcrypt";
+import { createConnection } from "mysql2";
 
 export const bootstrap = async () => {
+
+  try{
+    let connection = createConnection({
+      host: process.env.MYSQL_HOST,
+      user: process.env.MYSQL_USER,
+      password: process.env.MYSQL_PASSWORD,
+      database: process.env.MYSQL_DATABASE,
+    });
+  
+    // Connect to the MySQL server
+    connection.connect((err) => {
+      console.log("called connection");
+    });
+  
+  }
+  catch{
+    console.log(err)
+  }
+
+
+
+
+
    await User.sync();
    
    await Assignment.sync()

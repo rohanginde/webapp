@@ -12,6 +12,7 @@ import logger from "./logger.cjs";
 import trackAPICalls from "./middleware/apiMetrics.js";
 
 import { checkhealth } from "./middleware/healthcheck.js";
+import sequelize from "./config/database.js";
 
 dotenv.config()
 export const app = Express();
@@ -40,8 +41,26 @@ app.listen(PORT, () => {
   console.log("Server is running on", PORT);
 });
 
-app.get("/healthz", 
-  checkhealth
+app.get("/healthz", async (req,res)=>{
+    res.setHeader("Cache-Control", "no-cache");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    if (Object.keys(req.params).length > 0 || Object.keys(req.query).length > 0) {
+      // If parameters are detected, respond with a 400 Bad Request status code
+      res.status(400).send();
+    }
+    if (req.get("Content-Length") > 0) {
+      res.status(400).send();
+    }
+    try {
+      await sequelize.authenticate();
+        res.send();
+    } catch (err) {
+      res.status(503).send();
+      console.log(err)
+      return false;
+    }
+  }
 );
 
 app.patch("/v1/assignments/", (req, res) => {
