@@ -1,14 +1,12 @@
-// Import the 'hot-shots' StatsD client
+
 import StatsD from 'hot-shots';
 
 const statsd = new StatsD();
 
-// Middleware for tracking API calls and sending custom metrics
-const trackAPICalls = (req, res, next) => {
-  // Your API logic here
 
-  // Track the API call by incrementing a custom metric
-  const apiName = req.path; // You can adjust this to track the specific API
+const trackAPICalls = (req, res, next) => {
+
+  const apiName = req.path; 
   statsd.increment(`api.${apiName}.calls`);
 
   next();
