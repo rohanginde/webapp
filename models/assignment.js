@@ -13,10 +13,9 @@ export const Assignment = sequelize.define('Assignment', {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-    
+
       notEmpty: true,
     },
-    unique:true
   },
   points: {
     type: DataTypes.INTEGER,
