@@ -5,5 +5,5 @@ import logger from "../logger.cjs";
 
 dotenv.config();
 export const checkhealth = async (req, res, next) => {
-
+next();
 };
