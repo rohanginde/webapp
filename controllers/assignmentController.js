@@ -19,6 +19,9 @@ export const getAllAssignments = async (req, res) => {
 export const createAssignment = async (req, res) => {
   const assignmentData = req.body;
 
+
+
+
   try {
     assignmentData.createdBy = getCredentials(req)[0];
 
