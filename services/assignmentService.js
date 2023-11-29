@@ -20,7 +20,9 @@ export const createAssignment = async (assignmentData) => {
   logger.info("Assignment Created")
   console.log(assignmentData.createdBy);
   const assignment = await Assignment.create(assignmentData); //inbuilt method
+
    delete assignment.createdBy;
+  
   return assignment;
 };
 
