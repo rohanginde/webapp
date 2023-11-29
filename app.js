@@ -4,7 +4,7 @@ import assignmentRoutes from "./routes/assignmentRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import { bootstrap } from "./services/commonService.js";
 import { createConnection } from "mysql2";
-
+import submissionRouter from "./routes/submissionRoutes.js"
 
 
  import dotenv from 'dotenv';
@@ -36,6 +36,7 @@ app.use((req, res, next) => {
 
 app.use(userRouter);
 app.use(assignmentRoutes);
+app.use(submissionRouter)
 app.use(trackAPICalls);
 app.listen(PORT, () => {
   console.log("Server is running on", PORT);

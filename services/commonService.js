@@ -4,6 +4,7 @@ import { User } from "../models/user.js";
 import { parseCSV } from "../scripts/import-csv.js";
 import bcrypt from "bcrypt";
 import { createConnection } from "mysql2";
+import { Submission } from "../models/submission.js";
 
 export const bootstrap = async () => {
 
@@ -32,6 +33,8 @@ export const bootstrap = async () => {
    await User.sync();
    
    await Assignment.sync()
+
+   await Submission.sync()
     try {
       parseCSV((data) => {
         data.forEach(async (row) => {
