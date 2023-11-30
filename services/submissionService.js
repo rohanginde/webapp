@@ -20,7 +20,7 @@ export const createSubmission = async (submissionData , assignment_id, username)
  }
 
 if (assignment.deadline < new Date()){
-    throw new Error(`Submission rejected ! Your fuckin deadline is passed`)
+    throw new Error(`Submission rejected ! deadline is passed`)
 }
   const count = await Submission.count({
     where: { assignment_id },
@@ -44,9 +44,10 @@ if (assignment.deadline < new Date()){
 
     const message = {
         "email":username,
-        "submission_url":submission.submission_url,
-       "assignment_id":assignment_id,
-          "submission_id":submission_final.id,
+        "submissionURL":submission.submission_url,
+       "assignmentId":assignment_id,
+          "submissionId":submission_final.id,
+          
     }
 
     publishToSNS(message)
