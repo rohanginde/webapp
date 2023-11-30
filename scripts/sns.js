@@ -5,36 +5,47 @@ dotenv.config()
 import AWS from 'aws-sdk';
 
 // Configure AWS credentials
-AWS.config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
-    region: process.env.AWS_REGION,
-  });
+// AWS.config.update({
+//     accessKeyId: process.env.AWS_ACCESS_KEY,
+//     secretAccessKey: process.env.AWS_SECRET_KEY,
+//     region: process.env.AWS_REGION,
+//   });
 
-// Create an SNS object
+const profileName = 'dev';
+
+
+const credentials = new AWS.SharedIniFileCredentials({ profile: profileName });
+AWS.config.credentials = credentials;
+
 const sns = new AWS.SNS();
 
 
-export async function publishToSNS(message) {
-    console.log("first")
+export async function publishToSNS(user) {
+
+
+    
     try {
-      const params = {
+      const SNSMessageParams = {
         Message: JSON.stringify({
-          default: 'initializing',
-          email: message.email,
-          http:message.submission_url,
-          assignment_id:message.assignment_id,
-          submission_id:message.submission_id,
+            default: 'User submitted the assignment',
+            submissionId:user.submissionId,
+            submissionURL: user.submissionURL,
+            assignmentId: user.assignmentId,
+            username:user.email
         }),
+        TopicArn: process.env.SNS
+    };
+
+    sns.publish(SNSMessageParams, (err, data) => {
+          if (err) {
         
-        TopicArn: process.env.SNS, 
-      };
-      console.log(params.Message);
-  
-      const result = await sns.publish(params).promise();
-      console.log('Message published to SNS:', result);
-  
-      return result;
+          } else {
+              console.log(`Message ${SNSMessageParams.Message} sent to the topic ${SNSMessageParams.TopicArn}`);
+              console.log("MessageID is " + data.MessageId);
+              
+          }
+      });
+     
     } catch (error) {
       console.error('Error publishing to SNS:', error);
       throw error;
