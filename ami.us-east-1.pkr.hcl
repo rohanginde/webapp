@@ -99,4 +99,9 @@ build {
 
   }
 
+
+  post-processor "manifest" {
+    output = "manifest.json"
+  }
+
 }
