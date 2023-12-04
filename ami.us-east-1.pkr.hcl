@@ -99,4 +99,12 @@ build {
 
   }
 
+
+  post-processor "manifest" {
+    type        = "manifest"
+    output      = "manifest.json"
+    ami_regions = ["us-east-1"]
+  }
+
+
 }
