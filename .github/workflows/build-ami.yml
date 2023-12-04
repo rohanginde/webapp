@@ -92,7 +92,8 @@ jobs:
         aws ec2 create-launch-template-version \
           --launch-template-name ${{ env.LAUNCH_TEMPLATE_NAME }} \
           --version-description "New version with latest AMI" \
-          --source-version ${{ env.AMI_ID }}
+          --source-version 1 --launch-template-data '{"ImageId":"${{ env.AMI_ID }}"}'
+
           
     - name: Update Auto Scaling Group
       run: |
