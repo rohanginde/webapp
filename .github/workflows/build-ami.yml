@@ -9,7 +9,11 @@ jobs:
   build:
     name: Build CI
     runs-on: ubuntu-latest
-
+    
+    env:
+      AUTOSCALING_GROUP_NAME: ${{ secrets.AUTOSCALING_GROUP_NAME }}
+      LAUNCH_TEMPLATE_NAME: ${{ secrets.LAUNCH_TEMPLATE_NAME }}
+      
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
