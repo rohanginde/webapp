@@ -205,6 +205,6 @@ build {
       output = "manifest.json"
     }
 
-  }
+
 
 }
