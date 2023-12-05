@@ -88,7 +88,7 @@ jobs:
 
     - name: Extract AMI ID from manifest.json
       run: |
-        AMI_ID= "ami-0ab996a92e57c0637"
+        AMI_ID="ami-0ab996a92e57c0637"
         echo "AMI ID: $AMI_ID"
         echo "AMI_ID=$AMI" >> $GITHUB_ENV
 
