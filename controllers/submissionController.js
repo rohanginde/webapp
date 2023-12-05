@@ -7,6 +7,23 @@ import * as submissionService from "../services/submissionService.js";
 export const createSubmission = async (req, res) => {
     const submissionData = req.body;
     console.log(req.params.id)
+
+
+    const { submission_url, ...extraFields } = req.body;
+
+    // Check if "submission_url" is present and is a string
+    if (!submission_url) {
+      return res.status(400).json({ error: "'submission_url' is missing in the request body." });
+    }
+  
+    if (typeof submission_url !== 'string') {
+      return res.status(400).json({ error: "'submission_url' must be a string." });
+    }
+  
+    // Check for additional fields and reject the request if present
+    if (Object.keys(extraFields).length > 0) {
+      return res.status(400).json({ error: "Additional fields in the request body are not allowed." });
+    }
   
     try {
       

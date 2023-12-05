@@ -4,18 +4,13 @@ dotenv.config()
 
 import AWS from 'aws-sdk';
 
-// Configure AWS credentials
-// AWS.config.update({
-//     accessKeyId: process.env.AWS_ACCESS_KEY,
-//     secretAccessKey: process.env.AWS_SECRET_KEY,
-//     region: process.env.AWS_REGION,
-//   });
+AWS.config.update({
 
-const profileName = 'dev';
+    region: "us-east-1",
+ });
 
 
-const credentials = new AWS.SharedIniFileCredentials({ profile: profileName });
-AWS.config.credentials = credentials;
+
 
 const sns = new AWS.SNS();
 
@@ -23,7 +18,7 @@ const sns = new AWS.SNS();
 export async function publishToSNS(user) {
 
 
-    
+    console.log(user)
     try {
       const SNSMessageParams = {
         Message: JSON.stringify({
@@ -38,7 +33,7 @@ export async function publishToSNS(user) {
 
     sns.publish(SNSMessageParams, (err, data) => {
           if (err) {
-        
+           console.log(err)
           } else {
               console.log(`Message ${SNSMessageParams.Message} sent to the topic ${SNSMessageParams.TopicArn}`);
               console.log("MessageID is " + data.MessageId);
