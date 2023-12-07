@@ -9,6 +9,7 @@ export const createSubmission = async (req, res) => {
     console.log(req.params.id)
 
 
+
     const { submission_url, ...extraFields } = req.body;
 
     // Check if "submission_url" is present and is a string
@@ -24,7 +25,7 @@ export const createSubmission = async (req, res) => {
     if (Object.keys(extraFields).length > 0) {
       return res.status(400).json({ error: "Additional fields in the request body are not allowed." });
     }
-  
+
     try {
       
         const arr = getCredentials(req);
